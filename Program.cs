@@ -45,14 +45,50 @@ namespace Assignment1
             }
         }
 
+        // int GetChoice()
+        // {
+            
+        //     int x;
+        //     Console.WriteLine("Enter choice:");
+        //     x = Convert.ToInt32(Console.ReadLine());    //read input from user.
+        //     return x;
+        // }
+
         int GetChoice()
         {
-            
-            int x;
-            Console.WriteLine("Enter choice:");
-            x = Convert.ToInt32(Console.ReadLine());    //read input from user.
+            int x = 0;
+            bool isValidInput = false;
+
+            while (!isValidInput)
+            {
+                Console.WriteLine("Enter choice:");
+                string input = Console.ReadLine();
+
+                try
+                {
+                    x = Convert.ToInt32(input);
+                    if (x >= 0 && x <= 4)
+                    {
+                        isValidInput = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid: Please enter a number between 0 and 4.");
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid input: Please enter an integer.");
+                }
+                catch (OverflowException)
+                {
+                    Console.WriteLine("Input is too big. Please enter a smaller integer.");
+                }
+            }
+
             return x;
         }
+
 
          void Option1()
         {
@@ -79,7 +115,7 @@ namespace Assignment1
             Console.WriteLine("List in descending order");
             foreach (string dino in sort)
                 Console.WriteLine(dino);
-            int x = ranName.Next(9);
+            int x = ranName.Next(9);    // Originally line 93
             s = list[x];
             return s;
         }
@@ -172,13 +208,18 @@ namespace Assignment1
                     }
                     s = temp;
                     break;
+                    // Add a default case to handle values greater than 9
+                default:
+                Console.WriteLine("Invalid randomFunction value. Please try again.");
+                break;
             }
             return s;
         }
 
         void Menu ()  // Create menu for user.
         {
-            Console.WriteLine("\nPlese select an option below:\n");
+            //Console.WriteLine("\nPlese select an option below:\n"); // Originally line 181
+            Console.WriteLine("\nPlease select an option below:\n"); 
             Console.WriteLine("1: A random number 1 through 10.\n");
             Console.WriteLine("2: Today's date.\n");
             Console.WriteLine("3: A list of dinosaurs and then a random one chosen.\n");

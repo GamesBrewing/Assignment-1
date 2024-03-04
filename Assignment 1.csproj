@@ -8,4 +8,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="Assignment1.Tests\Assignment1.Tests.csproj" />
+  </ItemGroup>
 </Project>
